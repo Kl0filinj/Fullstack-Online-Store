@@ -1,5 +1,12 @@
 const express = require('express');
-const { registration, login } = require('../controllers/authController');
+const {
+  registration,
+  login,
+  getCurrentUserInfo,
+  registrationVerification,
+  // forcedVerification,
+  logOut,
+} = require('../controllers/authController');
 // const auth = require('../../middleware/auth');
 // const path = require('path');
 // const {
@@ -12,7 +19,12 @@ router.post('/signup', registration);
 
 router.post('/login', login);
 
-// router.get('/current', auth, getCurrentUserInfo);
+router.get('/verify/:verificationToken', registrationVerification);
 
-// router.get('/logout', auth, logOut);
+// router.post('/verify', forcedVerification);
+
+router.get('/current', getCurrentUserInfo);
+
+router.get('/logout', logOut);
+
 module.exports = router;

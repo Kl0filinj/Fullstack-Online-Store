@@ -2,8 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const cors = require('cors');
-const usersRouter = require('./routes/auth');
 require('dotenv').config();
+// require('./config/passport-config');
+
+const usersRouter = require('./routes/auth');
+const devicesRouter = require('./routes/device');
+const basketsRouter = require('./routes/basket');
+const typeAndBrandRouter = require('./routes/type_and_brand');
 
 const app = express();
 
@@ -18,6 +23,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use('/api/users', usersRouter);
+app.use('/api/devices', devicesRouter);
+app.use('/api/baskets', basketsRouter);
+app.use('/api/typeAndBrand', typeAndBrandRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });

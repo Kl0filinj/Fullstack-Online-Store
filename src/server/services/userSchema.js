@@ -10,10 +10,17 @@ const user = new Schema({
     required: [true, 'Email is required'],
     unique: true,
   },
-  username: {
+  verify: {
+    type: Boolean,
+    default: false,
+  },
+  verificationToken: {
     type: String,
-    required: [true, 'Username is required'],
-    unique: true,
+    required: [true, 'Verify token is required'],
+  },
+  token: {
+    type: String,
+    default: null,
   },
 });
 
