@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
-// require('./config/passport-config');
+require('./config/passport-config');
 
 const usersRouter = require('./routes/auth');
 const devicesRouter = require('./routes/device');

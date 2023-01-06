@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const sendMailService = require('../utils/sendMailService');
-
 const { notFoundErrorTemplate } = require('../constants/errorTemplates');
 const verificationEmailTemplate = require('../constants/verificationEmailTemplate');
 const { v4: uuidv4 } = require('uuid');
@@ -87,14 +86,14 @@ const login = async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
 
+  if (!user) {
+    return notFoundErrorTemplate(res);
+  }
   if (!user.verify) {
     return res.status(401).json({
       message: 'User was not verifyed',
       status: '401 Not Verifyed',
     });
-  }
-  if (!user) {
-    return notFoundErrorTemplate(res);
   }
   if (!isValidPassword(password, user.password)) {
     return res.status(401).json({
