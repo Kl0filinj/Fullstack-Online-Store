@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Fullstack-Online-Store/static/css/main.e6c13ad2.css",
-    "main.js": "/Fullstack-Online-Store/static/js/main.3b4b61ed.js",
+    "main.css": "/Fullstack-Online-Store/static/css/main.59b5a278.css",
+    "main.js": "/Fullstack-Online-Store/static/js/main.0d528847.js",
     "index.html": "/Fullstack-Online-Store/index.html",
-    "main.e6c13ad2.css.map": "/Fullstack-Online-Store/static/css/main.e6c13ad2.css.map",
-    "main.3b4b61ed.js.map": "/Fullstack-Online-Store/static/js/main.3b4b61ed.js.map"
+    "main.59b5a278.css.map": "/Fullstack-Online-Store/static/css/main.59b5a278.css.map",
+    "main.0d528847.js.map": "/Fullstack-Online-Store/static/js/main.0d528847.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.3b4b61ed.js"
+    "static/css/main.59b5a278.css",
+    "static/js/main.0d528847.js"
   ]
 }
