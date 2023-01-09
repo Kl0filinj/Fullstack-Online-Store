@@ -121,6 +121,9 @@ const login = async (req, res, next) => {
 };
 
 const getCurrentUserInfo = async (req, res, next) => {
+  if (!req.user) {
+    return notFoundErrorTemplate(res);
+  }
   const { email } = req.user;
   try {
     return successTemplate(res, 'Success', { data: { email } });

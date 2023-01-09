@@ -5,17 +5,17 @@ const {
   removeDevice,
   addDevice,
 } = require('../controllers/deviceController');
-// const auth = require('../../middleware/auth');
+const auth = require('../utils/auth');
 // const path = require('path');
 
 const router = express.Router();
 
-router.get('/', listDevices);
+router.get('/', auth, listDevices);
 
-router.get('/:deviceId', getDeviceById);
+router.get('/:deviceId', auth, getDeviceById);
 
-router.post('/', addDevice);
+router.post('/', auth, addDevice);
 
-router.delete('/:deviceId', removeDevice);
+router.delete('/:deviceId', auth, removeDevice);
 
 module.exports = router;
