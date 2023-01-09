@@ -4,15 +4,14 @@ const {
   removeBasket,
   addBasket,
 } = require('../controllers/basketController');
-// const auth = require('../../middleware/auth');
-// const path = require('path');
+const auth = require('../utils/auth');
 
 const router = express.Router();
 
-router.get('/', listBaskets);
+router.get('/', auth, listBaskets);
 
-router.post('/', addBasket);
+router.post('/', auth, addBasket);
 
-router.delete('/:basketItemId', removeBasket);
+router.delete('/:basketItemId', auth, removeBasket);
 
 module.exports = router;
