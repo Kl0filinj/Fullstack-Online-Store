@@ -7,6 +7,7 @@ const {
   // forcedVerification,
   logOut,
 } = require('../controllers/authController');
+const auth = require('../utils/auth');
 // const auth = require('../../middleware/auth');
 // const path = require('path');
 // const {
@@ -23,8 +24,8 @@ router.get('/verify/:verificationToken', registrationVerification);
 
 // router.post('/verify', forcedVerification);
 
-router.get('/current', getCurrentUserInfo);
+router.get('/current', auth, getCurrentUserInfo);
 
-router.get('/logout', logOut);
+router.get('/logout', auth, logOut);
 
 module.exports = router;

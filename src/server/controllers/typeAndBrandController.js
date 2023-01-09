@@ -2,10 +2,10 @@ const Type = require('../services/typeSchema');
 const Brand = require('../services/brandSchema');
 
 const addBrand = async (req, res, next) => {
-  const { brandName } = req.body;
+  const { name } = req.body;
   try {
     const responce = await Brand.create({
-      brandName,
+      name,
     });
     return res.json({ data: responce, status: 201 });
   } catch (error) {
@@ -15,10 +15,10 @@ const addBrand = async (req, res, next) => {
 };
 
 const addType = async (req, res, next) => {
-  const { typeName } = req.body;
+  const { name } = req.body;
   try {
     const responce = await Type.create({
-      typeName,
+      name,
     });
     return res.json({ data: responce, status: 201 });
   } catch (error) {
