@@ -33,14 +33,6 @@ const Login = () => {
       <Heading as="h1" mb="6" size="2xl">
         Enter in your acc
       </Heading>
-
-      {/* <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        my="5"
-        maxW="max-content"
-      > */}
       <Box display="flex" flexDirection="column" alignItems="center" my="5">
         <form onSubmit={onLogin} style={{ width: '100%' }}>
           <FormControl autoComplete="false">
@@ -63,25 +55,24 @@ const Login = () => {
               Password should contains min 7 simbols
             </FormHelperText>
           </FormControl>
+          <Box textAlign="center" mt="3">
+            <Button
+              colorScheme="green"
+              variant="solid"
+              type="submit"
+              mt="3"
+              maxW="60%"
+              w="60%"
+            >
+              Log in
+            </Button>
+          </Box>
         </form>
-        {/* </Box> */}
-        <Button
-          colorScheme="green"
-          variant="solid"
-          type="submit"
-          mt="3"
-          maxW="60%"
-          w="60%"
-        >
-          Log in
-        </Button>
-        <Link as={NavLink} to="registration" color="teal.500" mt="3">
+
+        <Link as={NavLink} to="/registration" color="teal.500" mt="3">
           Have no acc, NOOB, let`s create new one
           <ArrowForwardIcon mx="2" />
         </Link>
-        {/* <Button colorScheme="blackAlpha" color="white" variant="ghost" ml="2">
-            <NavLink to="/goit-react-hw-08-phonebook">Home</NavLink>
-          </Button> */}
       </Box>
     </Center>
   );

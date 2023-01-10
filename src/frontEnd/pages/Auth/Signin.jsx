@@ -76,25 +76,23 @@ const Signin = () => {
               Password should contains min 7 simbols
             </FormHelperText>
           </FormControl>
+          <Box textAlign="center" mt="3">
+            <Button
+              colorScheme="green"
+              variant="solid"
+              type="submit"
+              mt="3"
+              maxW="60%"
+              w="60%"
+            >
+              Register
+            </Button>
+          </Box>
         </form>
-        {/* </Box> */}
-        <Button
-          colorScheme="green"
-          variant="solid"
-          type="submit"
-          mt="3"
-          maxW="60%"
-          w="60%"
-        >
-          Register
-        </Button>
-        <Link as={NavLink} to="/    " color="teal.500" mt="3">
+        <Link as={NavLink} to="/login" color="teal.500" mt="3">
           Do u already have an acc ? Good, Log in
           <ArrowForwardIcon mx="2" />
         </Link>
-        {/* <Button colorScheme="blackAlpha" color="white" variant="ghost" ml="2">
-            <NavLink to="/goit-react-hw-08-phonebook">Home</NavLink>
-          </Button> */}
       </Box>
     </Center>
   );
