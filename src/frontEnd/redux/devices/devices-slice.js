@@ -37,7 +37,9 @@ export const devicesSlice = createSlice({
     [fetchAllDevices.pending]: handlePending,
     [fetchAllDevices.fulfilled](state, action) {
       normalizeState(state);
+
       state.devices = action.payload;
+      console.log(state.devices);
     },
   },
   [fetchAllDevices.rejected]: handleRejected,

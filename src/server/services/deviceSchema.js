@@ -24,6 +24,10 @@ const device = new Schema({
     type: String,
     required: [true, 'Desc is required'],
   },
+  image: {
+    type: String,
+    required: [true, 'Image is required'],
+  },
 });
 
 const Device = model('devices', device);
