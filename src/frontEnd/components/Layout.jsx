@@ -107,7 +107,7 @@ const Layout = () => {
           </Button>
         </Flex>
       </Box>
-      <Box px="10">
+      <Box>
         <Outlet />
       </Box>
     </>

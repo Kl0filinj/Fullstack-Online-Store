@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchAllDevices } from './devices-operations';
 // import {
 //   fetchAllContacts,
 //   addContact,
@@ -14,16 +15,32 @@ const devicesState = {
   error: null,
 };
 
+const handlePending = state => {
+  state.isLoading = true;
+};
+
+const handleRejected = (state, action) => {
+  console.log(action.payload);
+  state.isLoading = false;
+  state.error = action.payload;
+};
+
+const normalizeState = state => {
+  state.isLoading = false;
+  state.error = null;
+};
+
 export const devicesSlice = createSlice({
   name: 'devices',
   initialState: devicesState,
-  //   extraReducers: {
-  //     [fetchAllContacts.pending]: handlePending,
-  //     [fetchAllContacts.fulfilled](state, action) {
-  //       normalizeState(state);
-  //       state.contacts.items = action.payload;
-  //     },
-  //     [fetchAllContacts.rejected]: handleRejected,
+  extraReducers: {
+    [fetchAllDevices.pending]: handlePending,
+    [fetchAllDevices.fulfilled](state, action) {
+      normalizeState(state);
+      state.devices = action.payload;
+    },
+  },
+  [fetchAllDevices.rejected]: handleRejected,
   //     [addContact.fulfilled](state, action) {
   //       normalizeState(state);
   //       state.contacts.items.push(action.payload);

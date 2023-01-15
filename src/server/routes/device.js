@@ -10,9 +10,11 @@ const auth = require('../utils/auth');
 
 const router = express.Router();
 
-router.get('/', auth, listDevices);
+router.get('/', listDevices);
 
-router.get('/:deviceId', auth, getDeviceById);
+router.get('/new', listDevices);
+
+router.get('/:deviceId', getDeviceById);
 
 router.post('/', auth, addDevice);
 

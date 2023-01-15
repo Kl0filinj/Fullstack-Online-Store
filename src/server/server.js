@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 require('./config/passport-config');
 
@@ -19,6 +20,7 @@ const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
 app.use(logger(formatsLogger));
 app.use(cors());
+app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 

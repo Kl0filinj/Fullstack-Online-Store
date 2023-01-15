@@ -3,14 +3,18 @@ const { successTemplate } = require('../constants/successTemplate');
 const Device = require('../services/deviceSchema');
 
 const listDevices = async (req, res, next) => {
-  const { _id } = req.user;
+  // const { _id } = req.user;
   //   const { favorite = null, page = 0, limit = 5 } = req.query;
   //   let options = { owner: _id };
   //   if (favorite) {
   //     options = { ...options, favorite };
   //   }
+
   try {
-    const devices = await Device.find({ owner: _id });
+    const devices =
+      req.route.path === '/new'
+        ? await Device.find().limit(5)
+        : await Device.find();
     // .skip(page * limit)
     // .limit(limit);
     return successTemplate(res, 'Success', { data: devices });
