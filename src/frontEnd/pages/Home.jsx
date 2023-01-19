@@ -21,7 +21,6 @@ import { useDispatch, useSelector } from 'react-redux';
 const Home = () => {
   const dispatch = useDispatch();
   const newDevices = useSelector(selectDevices);
-  // const publicUrl = process.env.PUBLIC_URL;
 
   useEffect(() => {
     dispatch(fetchAllDevices(true));
@@ -46,7 +45,7 @@ const Home = () => {
         <Box textAlign="center" my="14">
           <Heading mb="5">Last added meals</Heading>
           <SimpleGrid columns="4" spacing="10">
-            {newDevices.map(({ _id, name, description, image }) => (
+            {newDevices.map(({ _id, name, description, image, price }) => (
               <Card maxW="sm" key={_id}>
                 <CardBody>
                   <Image
@@ -58,7 +57,7 @@ const Home = () => {
                     <Heading size="md">{name}</Heading>
                     <Text noOfLines="3">{description}</Text>
                     <Text color="blue.600" fontSize="2xl">
-                      $450
+                      ${price}
                     </Text>
                   </Stack>
                 </CardBody>

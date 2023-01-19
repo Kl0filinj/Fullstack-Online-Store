@@ -13,7 +13,7 @@ const listDevices = async (req, res, next) => {
   try {
     const devices =
       req.route.path === '/new'
-        ? await Device.find().limit(5)
+        ? await Device.find().limit(4)
         : await Device.find();
     // .skip(page * limit)
     // .limit(limit);
