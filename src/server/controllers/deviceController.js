@@ -3,21 +3,23 @@ const { successTemplate } = require('../constants/successTemplate');
 const Device = require('../services/deviceSchema');
 
 const listDevices = async (req, res, next) => {
-  // const { _id } = req.user;
-  //   const { favorite = null, page = 0, limit = 5 } = req.query;
-  //   let options = { owner: _id };
-  //   if (favorite) {
-  //     options = { ...options, favorite };
-  //   }
+  const filter = req.query;
 
+  const options = filter.length !== 0 ? { ...filter } : {};
+  console.log(options);
   try {
-    const devices =
-      req.route.path === '/new'
-        ? await Device.find().limit(4)
-        : await Device.find();
-    // .skip(page * limit)
-    // .limit(limit);
-    return successTemplate(res, 'Success', { data: devices });
+    let devices;
+    let status;
+
+    if (req.route.path === '/new') {
+      devices = await Device.find({ ...options }).limit(4);
+      status = 'addictional';
+    } else {
+      devices = await Device.find({ ...options });
+      status = 'initial';
+    }
+
+    return successTemplate(res, 'Success', { data: devices, status });
   } catch (error) {
     next(error);
   }
@@ -25,9 +27,8 @@ const listDevices = async (req, res, next) => {
 
 const getDeviceById = async (req, res, next) => {
   const { deviceId } = req.params;
-  const { _id } = req.user;
   try {
-    const deviceById = await Device.findById({ _id: deviceId, owner: _id });
+    const deviceById = await Device.findById({ _id: deviceId });
     if (deviceById) {
       return successTemplate(res, 'Success', {
         data: deviceById,

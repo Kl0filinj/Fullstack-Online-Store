@@ -22,10 +22,11 @@ const listOfTypes = async (req, res, next) => {
 };
 
 const addBrand = async (req, res, next) => {
-  const { name } = req.body;
+  const { name, image } = req.body;
   try {
     const responce = await Brand.create({
       name,
+      image,
     });
     return res.json({ data: responce, status: 201 });
   } catch (error) {

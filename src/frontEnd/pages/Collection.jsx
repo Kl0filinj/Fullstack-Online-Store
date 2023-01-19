@@ -3,24 +3,23 @@ import {
   Heading,
   Box,
   Flex,
-  Card,
-  CardBody,
   Image,
-  Stack,
   Divider,
-  CardFooter,
   Text,
-  ButtonGroup,
   Button,
   SimpleGrid,
+  LinkBox,
 } from '@chakra-ui/react';
+import DeviceCard from 'frontEnd/components/DeviceCard';
 import {
   fetchAllDevices,
   fetchAllTypes,
+  fetchAllBrands,
 } from 'frontEnd/redux/devices/devices-operations';
 import {
   selectDevices,
   selectTypes,
+  selectBrands,
 } from 'frontEnd/redux/devices/devices-selectors';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,16 +28,44 @@ const Collection = () => {
   const dispatch = useDispatch();
   const devices = useSelector(selectDevices);
   const types = useSelector(selectTypes);
+  const brands = useSelector(selectBrands);
 
   useEffect(() => {
-    dispatch(fetchAllDevices());
+    dispatch(fetchAllDevices({}));
     dispatch(fetchAllTypes());
+    dispatch(fetchAllBrands());
   }, [dispatch]);
   return (
     <Container px="10" maxW="1440px" centerContent>
       <Heading as="h1" my="8">
         Collection
       </Heading>
+      <Flex mb="8">
+        {brands.map(({ _id, name, image }) => (
+          <LinkBox
+            as="article"
+            bgColor="white"
+            borderRadius="lg"
+            color="black"
+            p="5"
+            mr="5"
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+            key={_id}
+          >
+            <Image
+              src={`http://localhost:1488/static/${image}`}
+              borderRadius="lg"
+              maxW="130px"
+              maxH="50px"
+            />
+            <Text ml="3" fontSize="xl" fontWeight="bold">
+              {name}
+            </Text>
+          </LinkBox>
+        ))}
+      </Flex>
       <Flex>
         <Box as="aside" minW="300px" flexGrow="1">
           <Heading as="h2">Filter by:</Heading>
@@ -65,31 +92,8 @@ const Collection = () => {
           </Box>
         </Box>
         <SimpleGrid as="main" columns="3" spacing="10" ml="5">
-          {devices.map(({ _id, name, description, image, price }) => (
-            <Card maxW="sm" key={_id}>
-              <CardBody>
-                <Image
-                  src={`http://localhost:1488/static/${image}`}
-                  alt="Green double couch with wooden legs"
-                  borderRadius="lg"
-                />
-                <Stack mt="6" spacing="3">
-                  <Heading size="md">{name}</Heading>
-                  <Text noOfLines="3">{description}</Text>
-                  <Text color="red.600" fontSize="2xl">
-                    ${price}
-                  </Text>
-                </Stack>
-              </CardBody>
-              <Divider />
-              <CardFooter>
-                <ButtonGroup spacing="2">
-                  <Button variant="solid" colorScheme="red">
-                    Add to card
-                  </Button>
-                </ButtonGroup>
-              </CardFooter>
-            </Card>
+          {devices.map(item => (
+            <DeviceCard cardInfo={item} key={item._id} />
           ))}
         </SimpleGrid>
       </Flex>
